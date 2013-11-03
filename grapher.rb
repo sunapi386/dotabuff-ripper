@@ -50,13 +50,16 @@ class GraphBot
     @neo.execute_query find_query
   end
 
+  def format_name(hero)
+    hero.downcase.gsub(' ','').gsub('-', '')
+  end
+
   def create_nodes(heroes)
-    create_nodes_query = "CREATE\n"
+    create_nodes_query = ""
     heroes.each do |hero|
       @log.info "Creating node for #{hero}"
-      create_nodes_query << "(#{hero.gsub('-','')}:Hero {name:\"#{hero}\"}),\n"
+      create_nodes_query << "(#{format_name(hero)}:Hero {name:\"#{hero}\"}),\n"
     end
-    #create_nodes_query = create_nodes_query[0..-3] + ";"
     create_nodes_query
   end
 
@@ -66,9 +69,9 @@ class GraphBot
     heroes.each do |hero|
       @log.info "Building edges for #{hero}!"
       @scrapeBot.matchups(hero).each do |opponent|
-        opponent_name = opponent[:name].downcase.gsub(' ', '-')
-        relation = "advantage: #{opponent[:advantage]}"
-        build_relation_query = "(#{hero})-[#{relation}]->(#{opponent_name}),\n"
+        opponent_name = opponent[:name]
+        relation = "advantage: #{opponent[:advantage]}, winrate: #{opponent[:winrate]}, matches: #{opponent[:matches]}"
+        build_relation_query = "(#{format_name(hero)})-[:DATA {#{relation}}]->(#{format_name(opponent_name)}),\n"
         query << build_relation_query
         @log.debug "#{hero} => #{opponent_name}"
       end
@@ -78,10 +81,14 @@ class GraphBot
 
   def run
     @log.info "GraphBot run"
-    #db_delete_all
+    db_delete_all
+    build_graph_query = "CREATE \n"
     heroes = @scrapeBot.heroes
-    #@neo.execute_query create_nodes(heroes)
-    puts create_edges(heroes)
+    build_graph_query << create_nodes(heroes)
+    build_graph_query << create_edges(heroes)
+    build_graph_query = build_graph_query[0..-3] + ";"
+    puts build_graph_query
+    #@neo.execute_query build_graph_query
   end
 
 end
