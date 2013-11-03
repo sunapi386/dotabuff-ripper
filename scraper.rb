@@ -3,10 +3,9 @@
 
 require 'nokogiri'
 require 'open-uri'
-require 'highline'
 require 'logger'
 
-class ScrapeBot < HighLine
+class ScrapeBot
   
   def heros # I don't like heroes spelling.
     Nokogiri::HTML(open('http://dotabuff.com/heroes/')).
