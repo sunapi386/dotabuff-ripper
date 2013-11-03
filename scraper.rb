@@ -6,12 +6,18 @@ require 'open-uri'
 require 'logger'
 
 class ScrapeBot
-  
-  def heros # I don't like heroes spelling.
+
+  def initialize
+    @log = Logger.new(STDERR)
+    @log.level = Logger::INFO
+    @log.info "ScrapeBot initialize"
+  end
+
+  def heroes
     Nokogiri::HTML(open('http://dotabuff.com/heroes/')).
     css('div#container-content').
     css('a').
-    collect do |link| 
+    collect do |link|
       link['href'].sub(/^\/.*\//, '') if link['href'] =~ /^\/heroes\/.*$/
     end.compact!
   end
@@ -20,7 +26,7 @@ class ScrapeBot
     url = "http://dotabuff.com/heroes/#{hero}/matchups"
     page = Nokogiri::HTML(open(url))
     page.css('tbody tr').collect do |row|
-      cells = row.css('td') 
+      cells = row.css('td')
       name = cells[1].children[0].children[0].text.to_s
       advantage = cells[2].children[0].text.to_f
       winrate = cells[3].children[0].children.text.to_f
@@ -30,15 +36,13 @@ class ScrapeBot
   end
 
   def run
-    @log = Logger.new(STDERR)
-    @log.level = Logger::INFO
-    heros.collect do |hero|
-      @log.info("Scraping #{hero}")
-     {:hero => hero, :matchups => matchups(hero)}
+    heroes.collect do |hero|
+      @log.info "Scraping #{hero}"
+      {:hero => hero, :matchups => matchups(hero)}
     end
   end
 end
 
-puts ScrapeBot.new.run
+#puts ScrapeBot.new.run
 
 
