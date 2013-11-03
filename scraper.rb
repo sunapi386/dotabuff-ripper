@@ -4,9 +4,10 @@
 require 'nokogiri'
 require 'open-uri'
 require 'highline'
+require 'logger'
 
 class ScrapeBot < HighLine
-
+  
   def heros # I don't like heroes spelling.
     Nokogiri::HTML(open('http://dotabuff.com/heroes/')).
     css('div#container-content').
@@ -29,14 +30,16 @@ class ScrapeBot < HighLine
     end
   end
 
-
-
   def run
-    puts matchups('lina')
-    # puts heros
+    @log = Logger.new(STDERR)
+    @log.level = Logger::INFO
+    heros.collect do |hero|
+      @log.info("Scraping #{hero}")
+     {:hero => hero, :matchups => matchups(hero)}
+    end
   end
 end
 
-ScrapeBot.new.run
+puts ScrapeBot.new.run
 
 
