@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-#https://github.com/bbatsov/ruby-style-guide
+#http://docs.neo4j.org/refcard/2.0/
 #http://docs.neo4j.org/chunked/milestone/query-create.html
 
 require 'logger'

@@ -1,4 +1,4 @@
-CREATE
+CREATE 
 (abaddon:Hero {name:"abaddon"}),
 (alchemist:Hero {name:"alchemist"}),
 (ancientapparition:Hero {name:"ancient-apparition"}),
