@@ -35,14 +35,17 @@ Neo4j is a graph based db, its query http://docs.neo4j.org/refcard/2.0/ should m
 `type => String` such as `relation`, where `relation = "advantage: #{opponent[:advantage]}, winrate: #{opponent[:winrate]}, matches: #{opponent[:matches]}"`.
 I'd grab the `from` and `to` nodes by this helper: 
 	def retrieve_node(name)
-	    @log.debug "Retrieve #{name}"
-	    find_query = "MATCH (x:Hero) WHERE x.name = \"#{hero}\" RETURN x;"
-	    @neo.execute_query find_query
-  	end
+		@log.debug "Retrieve #{name}"
+		find_query = "MATCH (x:Hero) WHERE x.name = \"#{hero}\" RETURN x;"
+		@neo.execute_query find_query
+	end
+
 And this would return a Hash. Example:
-	`irb(main):028:0> naxe = neo.execute_query find_query
+```ruby
+irb(main):028:0> naxe = neo.execute_query find_query
 => {"columns"=>["x"], "data"=>[[{"extensions"=>{}, "labels"=>"http://localhost:7474/db/data/node/12888/labels", "outgoing_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/out", "traverse"=>"http://localhost:7474/db/data/node/12888/traverse/{returnType}", "all_typed_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/all/{-list|&|types}", "self"=>"http://localhost:7474/db/data/node/12888", "property"=>"http://localhost:7474/db/data/node/12888/properties/{key}", "properties"=>"http://localhost:7474/db/data/node/12888/properties", "outgoing_typed_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/out/{-list|&|types}", "incoming_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/in", "create_relationship"=>"http://localhost:7474/db/data/node/12888/relationships", "paged_traverse"=>"http://localhost:7474/db/data/node/12888/paged/traverse/{returnType}{?pageSize,leaseTime}", "all_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/all", "incoming_typed_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/in/{-list|&|types}", "data"=>{"name"=>"axe"}}]]}
-	irb(main):029:0> naxe.class
-	=> Hash`
+irb(main):029:0> naxe.class
+=> Hash
+```
 
 I'm kind of stuck at this point.
