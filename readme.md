@@ -34,3 +34,6 @@ I think there's a bit of graph theory that can be used, as to what to do with th
 Neo4j is a graph based db, its query http://docs.neo4j.org/refcard/2.0/ should make db more useful for analysis than traditional table-based dbs. I have Neo4j 2.0.0-M06 community edition for Unix, from http://www.neo4j.org/. Just install and run, and you can use the `grapher.rb` script to populate it with data.
 Originally, I've generated a query for constructing my dataset, and it was 10,405 lines long. I tried to paste it as a Cypher query, I waited 2 hours and nothing happened. It wasn't until I looked at the console.log did I discover that it silently stack-overflowed while parsing the query! 
 I read up about creating queries individually, and managed to make my edges between the vertices. Take a look at the `png` files in example folder.
+
+## Installation
+Run `bundle install`. Have a neo4j db instance somewhere, and run `ruby grapher.rb` to populate the db.
