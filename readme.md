@@ -31,21 +31,6 @@ I think there's a bit of graph theory that can be used, as to what to do with th
 - who you need the most to synergize and balance
 
 #### Neo4j graph database
-Neo4j is a graph based db, its query http://docs.neo4j.org/refcard/2.0/ should make db more useful for analysis than traditional table-based dbs. I've generated a query for constructing my dataset, but it is 10,405 lines long. I tried to paste it as a Cypher command (what the db query language is called) - and waited 2 hours. It still didn't finish "executing"... upon checking the /data/log/console.log file, I found that it can't parse it because it stackoverflows. Turns out that SemanticCheck.scala couldn't parse it -- so the execution failed silently, like 1 minute into execution. Now my problem lies into getting the information scrapped to that database. Initially I was using the ruby driver for neo4j, a gem called 'neography'. But it seems this gem has problems adding relationships between nodes. It has a command, `@neo.create_relationship(type, from, to, properties)`, to create relationships. This would fail. I may be using the wrong parameters to it though. Here are the parameters. 
-`type => String` such as `relation`, where `relation = "advantage: #{opponent[:advantage]}, winrate: #{opponent[:winrate]}, matches: #{opponent[:matches]}"`.
-I'd grab the `from` and `to` nodes by this helper: 
-	def retrieve_node(name)
-		@log.debug "Retrieve #{name}"
-		find_query = "MATCH (x:Hero) WHERE x.name = \"#{hero}\" RETURN x;"
-		@neo.execute_query find_query
-	end
-
-And this would return a Hash. Example:
-```ruby
-irb(main):028:0> naxe = neo.execute_query find_query
-=> {"columns"=>["x"], "data"=>[[{"extensions"=>{}, "labels"=>"http://localhost:7474/db/data/node/12888/labels", "outgoing_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/out", "traverse"=>"http://localhost:7474/db/data/node/12888/traverse/{returnType}", "all_typed_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/all/{-list|&|types}", "self"=>"http://localhost:7474/db/data/node/12888", "property"=>"http://localhost:7474/db/data/node/12888/properties/{key}", "properties"=>"http://localhost:7474/db/data/node/12888/properties", "outgoing_typed_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/out/{-list|&|types}", "incoming_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/in", "create_relationship"=>"http://localhost:7474/db/data/node/12888/relationships", "paged_traverse"=>"http://localhost:7474/db/data/node/12888/paged/traverse/{returnType}{?pageSize,leaseTime}", "all_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/all", "incoming_typed_relationships"=>"http://localhost:7474/db/data/node/12888/relationships/in/{-list|&|types}", "data"=>{"name"=>"axe"}}]]}
-irb(main):029:0> naxe.class
-=> Hash
-```
-
-I'm kind of stuck at this point.
+Neo4j is a graph based db, its query http://docs.neo4j.org/refcard/2.0/ should make db more useful for analysis than traditional table-based dbs. I have Neo4j 2.0.0-M06 community edition for Unix, from http://www.neo4j.org/. Just install and run, and you can use the `grapher.rb` script to populate it with data.
+Originally, I've generated a query for constructing my dataset, and it was 10,405 lines long. I tried to paste it as a Cypher query, I waited 2 hours and nothing happened. It wasn't until I looked at the console.log did I discover that it silently stack-overflowed while parsing the query! 
+I read up about creating queries individually, and managed to make my edges between the vertices. Take a look at `somanynodes.png`.
