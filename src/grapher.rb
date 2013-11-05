@@ -57,7 +57,7 @@ class GraphBot
     @log.info 'Done creating relations!'
   end
 
-  def run
+  def create_graph
     @log.info 'GraphBot run'
     db_delete_all
     heroes = @scrapebot.heroes
@@ -67,4 +67,4 @@ class GraphBot
 
 end
 
-#GraphBot.new.run
+GraphBot.new.create_graph
