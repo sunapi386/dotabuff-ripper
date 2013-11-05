@@ -7,6 +7,10 @@ require 'logger'
 
 class ScrapeBot
 
+  XPATH_HERO_ROLE = '//*[@id="content-header-primary"]/div[2]/h1/small'
+  XPATH_HERO_POPULARITY = '//*[@id="content-header-secondary"]/dl[1]/dd/div'
+  XPATH_HERO_WINRATE = '//*[@id="content-header-secondary"]/dl[2]/dd/div'
+
   def initialize
     @log = Logger.new(STDERR)
     @log.level = Logger::INFO
@@ -15,11 +19,20 @@ class ScrapeBot
 
   def heroes
     Nokogiri::HTML(open('http://dotabuff.com/heroes/')).
-    css('div#container-content').
-    css('a').
-    collect do |link|
+        css('div#container-content').
+        css('a').
+        collect do |link|
       link['href'].sub(/^\/.*\//, '') if link['href'] =~ /^\/heroes\/.*$/
     end.compact!
+  end
+
+  def more(hero)
+    url = "http://dotabuff.com/heroes/#{hero}"
+    page = Nokogiri::HTML(open(url))
+    role = page.xpath(XPATH_HERO_ROLE)[0].children.text
+    popularity = page.xpath(XPATH_HERO_POPULARITY)[0].children.text.to_i
+    winrate = page.xpath(XPATH_HERO_WINRATE).children.children.text.to_f
+    {:role => role, :popularity => popularity, :winrate => winrate}
   end
 
   def matchups(hero)
@@ -41,8 +54,8 @@ class ScrapeBot
       {:hero => hero, :matchups => matchups(hero)}
     end
   end
+
 end
 
 #puts ScrapeBot.new.run
-
 

@@ -37,3 +37,4 @@ I read up about creating queries individually, and managed to make my edges betw
 
 ## Installation
 Run `bundle install`. Have a neo4j db instance somewhere, and run `ruby grapher.rb` to populate the db.
+Alternatively, goto `http://localhost:7474/browser/` and import the cypher script in `examples/script_db_create_graph.cypher`.

@@ -28,14 +28,17 @@ class GraphBot
     @log.warn 'Neo4j database cleared'
   end
 
-  def format_name(hero)
+  def query_format_name(hero)
     hero.downcase.gsub(/( |'|-)/,'')
   end
 
   def create_nodes(heroes)
     heroes.each do |hero|
       @log.info "Creating node for #{hero}"
-      query = "CREATE (#{format_name(hero)}:Hero:#{format_name(hero)} {name:\"#{hero}\"});"
+      details = @scrapebot.more(hero)
+      properties = "{name:\"#{hero}\", role:\"#{details[:role]}\", popularity:#{details[:popularity]}, winrate:#{details[:winrate]}}"
+      hero = query_format_name(hero)
+      query = "CREATE (#{hero}:Hero:#{hero} #{properties});"
       @neo.execute_query query
     end
   end
@@ -44,8 +47,8 @@ class GraphBot
     heroes.each do |hero|
       @log.info "Creating relations for #{hero}!"
       @scrapebot.matchups(hero).each do |opponent|
-        hero = format_name(hero)
-        opponent_name = format_name(opponent[:name])
+        hero = query_format_name(hero)
+        opponent_name = query_format_name(opponent[:name])
         properties = "advantage: #{opponent[:advantage]}, winrate: #{opponent[:winrate]}, matches: #{opponent[:matches]}"
         query = "MATCH (current:Hero), (opponent:Hero)\n" +
                 "WHERE current.name = '#{hero}' AND opponent.name = '#{opponent_name}'\n" +
