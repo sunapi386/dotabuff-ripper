@@ -35,6 +35,23 @@ Neo4j is a graph based db, its query http://docs.neo4j.org/refcard/2.0/ should m
 Originally, I've generated a query for constructing my dataset, and it was 10,405 lines long. I tried to paste it as a Cypher query, I waited 2 hours and nothing happened. It wasn't until I looked at the console.log did I discover that it silently stack-overflowed while parsing the query! 
 I read up about creating queries individually, and managed to make my edges between the vertices. Take a look at the `png` files in example folder.
 
+Q: Why even use a DB? 10k edges fits easily in memory of your interpreter. You can even dump it to a YAML file for storage.
+
+A: Well, I intend on making this a website; thinking a db would be better. Matchup and winrate are updated everyday, I was planning to scrape it nightly. And neo4j is a graph based db, so with simple queries I can have it run things like minflow, shortest path, etc
+
+Q: Why a graph based db?
+
+A: Scraping and adding to db was easy, the real design work is figuring out an algorithm to: 
+- select counter hero to as many enemy heroes as possible 
+- fulfill the team roles (1 carry, a semi carry or two, some supports, an initiator, etc.)
+- have it bias picks on heroes with certain strategies in mind like pushing, turtling, AOE Teamfight..
+I figure the graph db best represents the data I am using. 
+Queries such as `MATCH (hero_x)-[:counters]->(hero_y) RETURN hero_y` saves you a lot of work from implementing graph based selection algorithms. Plus, fun little introduction to graph dbs, as they are kinda different.
+
+
 ## Installation
-Run `bundle install`. Have a neo4j db instance somewhere, and run `ruby grapher.rb` to populate the db.
-Alternatively, goto `http://localhost:7474/browser/` and import the cypher script in `examples/script_db_create_graph.cypher`.
+1. Have Ruby and Neo4j installed. 
+2. `gem install bundler` after installing Ruby. 
+3. `bundle install` in the dotabuff-ripper folder. 
+4. `ruby grapher.rb` in the src folder to populate the db.
+5. Then visit `localhost:7474` with a fast browser, like chrome.
