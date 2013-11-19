@@ -26,7 +26,7 @@ class ScrapeBot
     end.compact!
   end
 
-  def more(hero)
+  def hero_attributes(hero)
     url = "http://dotabuff.com/heroes/#{hero}"
     page = Nokogiri::HTML(open(url))
     role = page.xpath(XPATH_HERO_ROLE)[0].children.text
@@ -48,14 +48,21 @@ class ScrapeBot
     end
   end
 
-  def run
+  def heros_attributes
     heroes.collect do |hero|
-      @log.info "Scraping #{hero}"
+      @log.info "Scraping #{hero} attributes"
+      {:hero => hero, :hero_attributes => hero_attributes(hero)}
+    end
+  end
+
+  def hero_matchups
+    heroes.collect do |hero|
+      @log.info "Scraping #{hero} matchups"
       {:hero => hero, :matchups => matchups(hero)}
     end
   end
 
 end
 
-#puts ScrapeBot.new.run
+puts ScrapeBot.new.heros_attributes
 
