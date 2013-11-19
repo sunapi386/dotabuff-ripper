@@ -64,5 +64,4 @@ class ScrapeBot
 
 end
 
-puts ScrapeBot.new.heros_attributes
 
