@@ -1,0 +1,101 @@
+{:advantage=>1.6, :winrate=>53.31, :matches=>47916, :name=>"Meepo"}
+{:advantage=>0.74, :winrate=>54.49, :matches=>43211, :name=>"Io"}
+{:advantage=>0.73, :winrate=>43.53, :matches=>65498, :name=>"Omniknight"}
+{:advantage=>0.72, :winrate=>49.65, :matches=>60477, :name=>"Naga Siren"}
+{:advantage=>0.61, :winrate=>48.97, :matches=>88636, :name=>"Troll Warlord"}
+{:advantage=>0.34, :winrate=>41.01, :matches=>62250, :name=>"Treant Protector"}
+{:advantage=>0.23, :winrate=>40.59, :matches=>78948, :name=>"Necrolyte"}
+{:advantage=>0.16, :winrate=>51.77, :matches=>62636, :name=>"Lone Druid"}
+{:advantage=>0.12, :winrate=>41.81, :matches=>135925, :name=>"Ursa"}
+{:advantage=>0.1, :winrate=>50.4, :matches=>29742, :name=>"Chen"}
+{:advantage=>0.08, :winrate=>47.99, :matches=>94302, :name=>"Outworld Devourer"}
+{:advantage=>0.06, :winrate=>43.54, :matches=>63879, :name=>"Dazzle"}
+{:advantage=>0.03, :winrate=>46.5, :matches=>126928, :name=>"Timbersaw"}
+{:advantage=>0.02, :winrate=>46.68, :matches=>41746, :name=>"Brewmaster"}
+{:advantage=>-0.02, :winrate=>47.08, :matches=>80500, :name=>"Dark Seer"}
+{:advantage=>-0.03, :winrate=>49.53, :matches=>46201, :name=>"Leshrac"}
+{:advantage=>-0.09, :winrate=>44.4, :matches=>82709, :name=>"Slardar"}
+{:advantage=>-0.13, :winrate=>49.15, :matches=>52842, :name=>"Enigma"}
+{:advantage=>-0.28, :winrate=>41.93, :matches=>110127, :name=>"Luna"}
+{:advantage=>-0.31, :winrate=>50.58, :matches=>181130, :name=>"Phantom Assassin"}
+{:advantage=>-0.32, :winrate=>41.52, :matches=>89448, :name=>"Venomancer"}
+{:advantage=>-0.32, :winrate=>43.31, :matches=>61885, :name=>"Lycanthrope"}
+{:advantage=>-0.33, :winrate=>50.7, :matches=>112255, :name=>"Queen of Pain"}
+{:advantage=>-0.34, :winrate=>50.41, :matches=>63327, :name=>"Enchantress"}
+{:advantage=>-0.34, :winrate=>41.25, :matches=>146912, :name=>"Crystal Maiden"}
+{:advantage=>-0.35, :winrate=>52.52, :matches=>66027, :name=>"Broodmother"}
+{:advantage=>-0.43, :winrate=>49.95, :matches=>90498, :name=>"Storm Spirit"}
+{:advantage=>-0.45, :winrate=>45.71, :matches=>82255, :name=>"Bristleback"}
+{:advantage=>-0.51, :winrate=>48.57, :matches=>89316, :name=>"Tiny"}
+{:advantage=>-0.52, :winrate=>45.36, :matches=>93193, :name=>"Sand King"}
+{:advantage=>-0.52, :winrate=>41.56, :matches=>85124, :name=>"Jakiro"}
+{:advantage=>-0.58, :winrate=>44.27, :matches=>158851, :name=>"Slark"}
+{:advantage=>-0.59, :winrate=>47.23, :matches=>208307, :name=>"Bounty Hunter"}
+{:advantage=>-0.67, :winrate=>47.7, :matches=>155935, :name=>"Axe"}
+{:advantage=>-0.71, :winrate=>44.54, :matches=>76249, :name=>"Shadow Shaman"}
+{:advantage=>-0.72, :winrate=>45.79, :matches=>77767, :name=>"Night Stalker"}
+{:advantage=>-0.72, :winrate=>48.94, :matches=>64420, :name=>"Bane"}
+{:advantage=>-0.75, :winrate=>45.02, :matches=>126664, :name=>"Shadow Fiend"}
+{:advantage=>-0.79, :winrate=>37.96, :matches=>96550, :name=>"Abaddon"}
+{:advantage=>-0.79, :winrate=>52.29, :matches=>53347, :name=>"Tinker"}
+{:advantage=>-0.8, :winrate=>46.69, :matches=>51680, :name=>"Undying"}
+{:advantage=>-0.84, :winrate=>43.68, :matches=>189181, :name=>"Bloodseeker"}
+{:advantage=>-0.85, :winrate=>50.53, :matches=>66795, :name=>"Magnus"}
+{:advantage=>-0.88, :winrate=>49.38, :matches=>111537, :name=>"Faceless Void"}
+{:advantage=>-0.88, :winrate=>43.46, :matches=>59290, :name=>"Disruptor"}
+{:advantage=>-0.88, :winrate=>47.31, :matches=>45855, :name=>"Beastmaster"}
+{:advantage=>-0.88, :winrate=>53.87, :matches=>59047, :name=>"Morphling"}
+{:advantage=>-0.93, :winrate=>39.19, :matches=>89419, :name=>"Lich"}
+{:advantage=>-0.95, :winrate=>46.06, :matches=>92765, :name=>"Dragon Knight"}
+{:advantage=>-0.98, :winrate=>43.15, :matches=>123320, :name=>"Phantom Lancer"}
+{:advantage=>-1.0, :winrate=>48.33, :matches=>132333, :name=>"Alchemist"}
+{:advantage=>-1.0, :winrate=>50.84, :matches=>168311, :name=>"Invoker"}
+{:advantage=>-1.01, :winrate=>49.08, :matches=>88876, :name=>"Gyrocopter"}
+{:advantage=>-1.01, :winrate=>45.76, :matches=>74076, :name=>"Keeper of the Light"}
+{:advantage=>-1.02, :winrate=>46.62, :matches=>106113, :name=>"Doom"}
+{:advantage=>-1.02, :winrate=>53.07, :matches=>43926, :name=>"Shadow Demon"}
+{:advantage=>-1.02, :winrate=>53.05, :matches=>140752, :name=>"Anti-Mage"}
+{:advantage=>-1.07, :winrate=>49.65, :matches=>65596, :name=>"Batrider"}
+{:advantage=>-1.08, :winrate=>43.88, :matches=>151320, :name=>"Weaver"}
+{:advantage=>-1.1, :winrate=>37.52, :matches=>96731, :name=>"Warlock"}
+{:advantage=>-1.12, :winrate=>39.77, :matches=>65437, :name=>"Elder Titan"}
+{:advantage=>-1.14, :winrate=>48.22, :matches=>80496, :name=>"Chaos Knight"}
+{:advantage=>-1.16, :winrate=>48.53, :matches=>84961, :name=>"Tusk"}
+{:advantage=>-1.16, :winrate=>43.72, :matches=>89039, :name=>"Ogre Magi"}
+{:advantage=>-1.16, :winrate=>44.06, :matches=>77346, :name=>"Witch Doctor"}
+{:advantage=>-1.19, :winrate=>46.58, :matches=>59833, :name=>"Ancient Apparition"}
+{:advantage=>-1.2, :winrate=>50.93, :matches=>100689, :name=>"Clinkz"}
+{:advantage=>-1.24, :winrate=>44.37, :matches=>111338, :name=>"Sven"}
+{:advantage=>-1.24, :winrate=>46.57, :matches=>195289, :name=>"Nature's Prophet"}
+{:advantage=>-1.3, :winrate=>44.83, :matches=>40822, :name=>"Visage"}
+{:advantage=>-1.33, :winrate=>40.71, :matches=>116783, :name=>"Vengeful Spirit"}
+{:advantage=>-1.35, :winrate=>42.01, :matches=>89350, :name=>"Skeleton King"}
+{:advantage=>-1.43, :winrate=>48.42, :matches=>165648, :name=>"Rubick"}
+{:advantage=>-1.45, :winrate=>45.37, :matches=>114440, :name=>"Earthshaker"}
+{:advantage=>-1.45, :winrate=>49.39, :matches=>81004, :name=>"Puck"}
+{:advantage=>-1.45, :winrate=>43.4, :matches=>99591, :name=>"Clockwerk"}
+{:advantage=>-1.46, :winrate=>49.07, :matches=>149694, :name=>"Windrunner"}
+{:advantage=>-1.46, :winrate=>42.32, :matches=>94955, :name=>"Silencer"}
+{:advantage=>-1.47, :winrate=>44.42, :matches=>94903, :name=>"Razor"}
+{:advantage=>-1.48, :winrate=>46.08, :matches=>129871, :name=>"Lion"}
+{:advantage=>-1.51, :winrate=>41.29, :matches=>74734, :name=>"Centaur Warrunner"}
+{:advantage=>-1.52, :winrate=>40.02, :matches=>84374, :name=>"Death Prophet"}
+{:advantage=>-1.54, :winrate=>42.28, :matches=>80126, :name=>"Tidehunter"}
+{:advantage=>-1.54, :winrate=>44.81, :matches=>127819, :name=>"Kunkka"}
+{:advantage=>-1.57, :winrate=>48.61, :matches=>113136, :name=>"Templar Assassin"}
+{:advantage=>-1.62, :winrate=>46.62, :matches=>61810, :name=>"Medusa"}
+{:advantage=>-1.65, :winrate=>45.12, :matches=>156229, :name=>"Lifestealer"}
+{:advantage=>-1.65, :winrate=>50.5, :matches=>70207, :name=>"Skywrath Mage"}
+{:advantage=>-1.7, :winrate=>41.14, :matches=>132917, :name=>"Viper"}
+{:advantage=>-1.7, :winrate=>45.32, :matches=>159609, :name=>"Juggernaut"}
+{:advantage=>-1.74, :winrate=>42.48, :matches=>218540, :name=>"Riki"}
+{:advantage=>-1.88, :winrate=>45.85, :matches=>330456, :name=>"Pudge"}
+{:advantage=>-1.94, :winrate=>41.76, :matches=>165572, :name=>"Mirana"}
+{:advantage=>-2.2, :winrate=>45.7, :matches=>203849, :name=>"Sniper"}
+{:advantage=>-2.21, :winrate=>38.14, :matches=>111993, :name=>"Zeus"}
+{:advantage=>-2.34, :winrate=>40.27, :matches=>87175, :name=>"Spectre"}
+{:advantage=>-2.34, :winrate=>40.42, :matches=>211890, :name=>"Drow Ranger"}
+{:advantage=>-2.42, :winrate=>42.57, :matches=>143082, :name=>"Nyx Assassin"}
+{:advantage=>-2.55, :winrate=>39.72, :matches=>237443, :name=>"Spirit Breaker"}
+{:advantage=>-2.66, :winrate=>47.03, :matches=>59632, :name=>"Pugna"}
+{:advantage=>-3.01, :winrate=>43.27, :matches=>155732, :name=>"Huskar"}
