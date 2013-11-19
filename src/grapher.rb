@@ -28,16 +28,16 @@ class GraphBot
     @log.warn 'Neo4j database cleared'
   end
 
-  def query_format_name(hero)
+  def compact_hero_name(hero)
     hero.downcase.gsub(/( |'|-)/,'')
   end
 
   def create_nodes(heroes)
     heroes.each do |hero|
       @log.info "Creating node for #{hero}"
-      details = @scrapebot.more(hero)
+      details = @scrapebot.hero_attributes(hero)
       properties = "{name:\"#{hero}\", role:\"#{details[:role]}\", popularity:#{details[:popularity]}, winrate:#{details[:winrate]}}"
-      hero = query_format_name(hero)
+      hero = compact_hero_name(hero)
       query = "CREATE (#{hero}:Hero:#{hero} #{properties});"
       @neo.execute_query query
     end
@@ -47,8 +47,8 @@ class GraphBot
     heroes.each do |hero|
       @log.info "Creating relations for #{hero}!"
       @scrapebot.matchups(hero).each do |opponent|
-        hero = query_format_name(hero)
-        opponent_name = query_format_name(opponent[:name])
+        hero = compact_hero_name(hero)
+        opponent_name = compact_hero_name(opponent[:name])
         properties = "advantage: #{opponent[:advantage]}, winrate: #{opponent[:winrate]}, matches: #{opponent[:matches]}"
         query = "MATCH (current:Hero), (opponent:Hero)\n" +
                 "WHERE current.name = '#{hero}' AND opponent.name = '#{opponent_name}'\n" +
@@ -60,7 +60,7 @@ class GraphBot
     @log.info 'Done creating relations!'
   end
 
-  def create_graph
+  def create_graph_db
     @log.info 'GraphBot run'
     db_delete_all
     heroes = @scrapebot.heroes
@@ -70,4 +70,4 @@ class GraphBot
 
 end
 
-GraphBot.new.create_graph
+
