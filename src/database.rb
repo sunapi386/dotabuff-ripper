@@ -68,6 +68,11 @@ class DatabaseBot
     create_relations(heroes)
   end
 
+  def best_counters(hero)
+    query = "MATCH #{hero}..."
+    counters = @neo.execute_query(query).to_s
+    @log.debug "Best counters for #{hero} are #{counters}"
+  end
 end
 
 
