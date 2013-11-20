@@ -68,10 +68,13 @@ class DatabaseBot
     create_relations(heroes)
   end
 
-  def best_counters(hero)
-    query = "MATCH #{hero}..."
-    counters = @neo.execute_query(query).to_s
-    @log.debug "Best counters for #{hero} are #{counters}"
+  def advantage(from, to)
+    @neo.execute_query("MATCH (n:#{from})-[r]->(m:#{to}) RETURN r.advantage")['data'][0][0]
+  end
+
+  def what_counters(hero)
+    query = "MATCH (n:#{hero})-[r]->(m) WHERE r.advantage < 0 RETURN m.name, r.advantage ORDER BY r.advantage"
+    @neo.execute_query(query)['data']
   end
 end
 

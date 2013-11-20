@@ -14,7 +14,6 @@ class ScrapeBot
   def initialize
     @log = Logger.new(STDERR)
     @log.level = Logger::INFO
-    @log.info "ScrapeBot initialize"
   end
 
   def heroes
