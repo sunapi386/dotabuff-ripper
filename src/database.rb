@@ -92,6 +92,11 @@ class DatabaseBot
     duals.sort_by! {|hero,advantage| advantage}
   end
 
+  def all_heroes
+    query = 'MATCH (n) RETURN collect(n.name)'
+    @neo.execute_query(query)['data'][0][0]
+  end
+
 end
 
 
