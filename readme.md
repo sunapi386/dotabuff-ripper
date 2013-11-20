@@ -51,7 +51,9 @@ Queries such as `MATCH (hero_x)-[:counters]->(hero_y) RETURN hero_y` saves you a
 
 ## Installation
 1. Have Ruby and Neo4j installed. 
-2. `gem install bundler` after installing Ruby. 
-3. `bundle install` in the dotabuff-ripper folder. 
-4. `ruby grapher.rb` in the src folder to populate the db.
-5. Then visit `localhost:7474` with a fast browser, like chrome.
+2. `gem install bundler` after installing Ruby 2.0.0
+3. `bundle install`
+4. Seed the db, extract this https://dl.dropboxusercontent.com/u/44199594/graph.db.zip into the neo4j-community-2.0.0-M06/data folder
+5. Visit `localhost:7474`
+
+
