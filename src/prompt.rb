@@ -3,25 +3,30 @@ require 'highline/import'
 
 database_bot = DatabaseBot.new
 
-puts 'Welcome to Dota counter-picker!'
-puts '-------------------------------'
-puts 'S - Single hero counters'
-puts 'D - Dual hero counters'
-puts 'A - All hero names'
-puts 'F - Find a hero by partial name'
-puts 'Q - Quit'
+def prompt_menu
+  puts
+  puts 'Welcome to Dota counter-picker!'
+  puts '-------------------------------'
+  puts 's - Single hero counters'
+  puts 'd - Dual hero counters'
+  puts 'a - All hero names'
+  puts 'f - Find a hero by partial name'
+  puts 'q - Quit'
+  puts '-------------------------------'
+end
 
 def sanitize(input)
-  input.gsub(/[^0-9a-z]+/i, '').downcase.gsub(/( |'|-)/,'')
+  input.gsub(/[^a-z]+/i, '').downcase.gsub(/( |'|-)/,'')
 end
 
 
-begin
-  choice = sanitize ask 'Enter a choice: '
+prompt_menu
+while true
+  choice = sanitize ask '>>> '
 
   case choice[0]
     when 's'
-      hero = sanitize ask 'Enter Hero: '
+      hero = sanitize ask 'Hero: '
       counters = database_bot.what_counters(hero)
       if counters.empty?
         puts 'Did you mean...'
@@ -32,8 +37,8 @@ begin
       end
 
     when 'd'
-      hero1 = sanitize ask 'Enter Hero 1: '
-      hero2 = sanitize ask 'Enter Hero 2: '
+      hero1 = sanitize ask 'Hero 1: '
+      hero2 = sanitize ask 'Hero 2: '
       counters = database_bot.dual_counters(hero1, hero2)
       if counters.empty?
         puts 'Did you mean...'
@@ -46,10 +51,11 @@ begin
       end
 
     when 'a'
+      puts '----All heros---------'
       puts database_bot.all_heroes
 
     when 'f'
-      find_this = (ask 'Name: ').downcase.gsub(/[^0-9a-z]+/i, '')
+      find_this = sanitize ask 'Name: '
       puts database_bot.search(find_this)
 
     when 'q'
@@ -58,6 +64,7 @@ begin
 
     else
       puts 'Unknown choice!'
+      prompt_menu
   end
 
-end while true
+end
