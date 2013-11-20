@@ -10,33 +10,52 @@ puts 'D - Dual hero counters'
 puts 'A - All hero names'
 puts 'F - Find a hero by partial name'
 puts 'Q - Quit'
+
+def sanitize(input)
+  input.gsub(/[^0-9a-z]+/i, '').downcase.gsub(/( |'|-)/,'')
+end
+
+
 begin
-  choice = (ask 'Enter a choice: ').upcase.gsub(/[^0-9a-z]+/i, '')
+  choice = sanitize ask 'Enter a choice: '
 
   case choice[0]
-    when 'S'
-      hero = database_bot.compact_hero_name ask 'Enter Hero: '
-      puts '-------------------------------'
-      database_bot.what_counters(hero)[0..10].each do |hero, advantage|
-        puts "#{hero} #{advantage}"
+    when 's'
+      hero = sanitize ask 'Enter Hero: '
+      counters = database_bot.what_counters(hero)
+      if counters.empty?
+        puts 'Did you mean...'
+        puts database_bot.search_regex(hero)
+        puts  '...?'
+      else
+        counters[0..10].each { |hero, advantage| puts "#{hero} #{advantage}" }
       end
-    when 'D'
-      hero1 = database_bot.compact_hero_name ask 'Enter Hero 1: '
-      hero2 = database_bot.compact_hero_name ask 'Enter Hero 2: '
-      puts '-------------------------------'
-      database_bot.dual_counters(hero1, hero2)[0..10].each do |hero, advantage|
-        puts "#{hero} #{advantage}"
+
+    when 'd'
+      hero1 = sanitize ask 'Enter Hero 1: '
+      hero2 = sanitize ask 'Enter Hero 2: '
+      counters = database_bot.dual_counters(hero1, hero2)
+      if counters.empty?
+        puts 'Did you mean...'
+        puts database_bot.search_regex(hero1)
+        puts  '...or...'
+        puts database_bot.search_regex(hero2)
+        puts  '...?'
+      else
+        counters[0..10].each { |hero, advantage| puts "#{hero} #{advantage}" }
       end
-    when 'A'
+
+    when 'a'
       puts database_bot.all_heroes
-    when 'F'
+
+    when 'f'
       find_this = (ask 'Name: ').downcase.gsub(/[^0-9a-z]+/i, '')
-      database_bot.all_heroes.each do |name|
-        puts name if name.include? find_this
-      end
-    when 'Q'
+      puts database_bot.search(find_this)
+
+    when 'q'
       puts 'Goodbye!'
       exit!
+
     else
       puts 'Unknown choice!'
   end

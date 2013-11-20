@@ -27,4 +27,20 @@ module Questioner
     query = 'MATCH (n) RETURN collect(n.name)'
     @neo.execute_query(query)['data'][0][0]
   end
+
+  def search(hero)
+    all_heroes.collect { |name| name if name.include? hero }.compact!
+  end
+
+  def search_regex(hero)
+    return 'No match' if hero.empty?
+    query = Regexp.new(Regexp.escape(hero))
+    names = all_heroes.collect { |name| name if name =~ query}.compact!
+    if names.empty?
+      search_regex(hero[0..-2])
+    else
+      names
+    end
+  end
+
 end
