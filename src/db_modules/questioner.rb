@@ -14,7 +14,7 @@ module Questioner
 
   def merge_counters(hero1_counters, hero2_counters)
     duals = []
-    hero2_counters_str = hero2_counters.to_s
+    hero2_counters_str = hero2_counters.collect { |h, a| h }.sort.to_s
     hero1_counters.each do |hero, disadvantage|
       if hero2_counters_str.include? hero
         disadvantage_hero2 = hero2_counters.select { |h, a| h == hero }[0][1]
