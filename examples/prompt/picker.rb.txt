@@ -1,0 +1,98 @@
+C:\Users\Jason\workspace\dotabuff-ripper\src>ruby picker.rb
+DL is deprecated, please use Fiddle
+Hero 1 >>> lina
+Counters to lina:
+-----------------------
+huskar -2.97
+pugna -2.42
+zeus -2.41
+sniper -2.27
+spectre -2.26
+drowranger -2.2
+pudge -2.15
+juggernaut -2.06
+nyxassassin -2.03
+spiritbreaker -2.03
+templarassassin -1.99
+-----------------------
+Hero 2 >>> lion
+Counters to lina, and lion:
+-----------------------
+drowranger -5.56
+pugna -4.99
+razor -4.82
+sniper -4.75
+huskar -4.42
+spectre -4.3
+viper -4.11
+tidehunter -3.98
+silencer -3.59
+kunkka -3.45
+pudge -3.43
+-----------------------
+Hero 3 >>> drow
+Unrecognized hero 'drow', similar names are...
+drowranger
+shadowdemon
+shadowshaman
+shadowfiend
+dragonknight
+disruptor
+...
+Please re-enter Hero 3 >>> drowranger
+Counters to lina, lion, and drowranger:
+-----------------------
+sniper -5.73
+spectre -5.71
+spiritbreaker -5.68
+riki -5.56
+pudge -5.0
+kunkka -4.89
+huskar -4.85
+templarassassin -4.62
+tusk -4.58
+tidehunter -4.47
+mirana -4.45
+-----------------------
+Hero 4 >>> lifesteal
+Unrecognized hero 'lifesteal', similar names are...
+lifestealer
+bristleback
+nightstalker
+eldertitan
+crystalmaiden
+brewmaster
+...
+Please re-enter Hero 4 >>> lifestealer
+Counters to lina, lion, drowranger, and lifestealer:
+-----------------------
+riki -10.27
+templarassassin -9.15
+sniper -8.02
+spiritbreaker -7.55
+chaosknight -6.69
+tusk -6.3
+phantomlancer -5.79
+nightstalker -5.63
+tidehunter -5.55
+mirana -5.43
+broodmother -5.38
+-----------------------
+Hero 5 >>> templarassassin
+Counters to lina, lion, drowranger, lifestealer, and templarassassin:
+-----------------------
+riki -12.1
+sniper -9.97
+spiritbreaker -8.59
+phantomlancer -8.57
+chaosknight -8.53
+axe -7.51
+broodmother -7.23
+sandking -6.76
+tidehunter -6.28
+gyrocopter -6.19
+beastmaster -6.12
+-----------------------
+Done
+
+C:\Users\Jason\workspace\dotabuff-ripper\src>
