@@ -5,16 +5,16 @@ module Creator
     @log.warn 'Neo4j database cleared'
   end
 
-  def compact_hero_name(hero)
+  def sanitize(hero)
     hero.downcase.gsub(/( |'|-)/,'')
   end
 
   def create_nodes(heroes)
     heroes.each do |hero|
-      @log.info "Creating node for #{hero}"
       details = @scrapebot.hero_attributes(hero)
+      hero = sanitize hero
+      @log.info "Creating node for #{hero}"
       properties = "{name:\"#{hero}\", role:\"#{details[:role]}\", popularity:#{details[:popularity]}, winrate:#{details[:winrate]}}"
-      hero = compact_hero_name(hero)
       query = "CREATE (#{hero}:Hero:#{hero} #{properties});"
       @neo.execute_query query
     end
@@ -24,12 +24,12 @@ module Creator
     heroes.each do |hero|
       @log.info "Creating relations for #{hero}!"
       @scrapebot.matchups(hero).each do |opponent|
-        hero = compact_hero_name(hero)
-        opponent_name = compact_hero_name(opponent[:name])
+        hero = sanitize hero
+        opponent_name = sanitize opponent[:name]
         properties = "advantage: #{opponent[:advantage]}, winrate: #{opponent[:winrate]}, matches: #{opponent[:matches]}"
         query = "MATCH (current:Hero), (opponent:Hero)\n" +
-            "WHERE current.name = '#{hero}' AND opponent.name = '#{opponent_name}'\n" +
-            "CREATE (current)-[r:DATA {#{properties}}]->(opponent);"
+                "WHERE current.name = '#{hero}' AND opponent.name = '#{opponent_name}'\n" +
+                "CREATE (current)-[r:DATA {#{properties}}]->(opponent);"
         @neo.execute_query query
         @log.debug "Created (#{hero})->(#{opponent_name})!"
       end
