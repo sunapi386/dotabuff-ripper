@@ -19,9 +19,10 @@ module Questioner
     hero1_counters = what_counters(hero1)
     hero2_counters = what_counters(hero2)
     hero2_counters_str = hero2_counters.to_s
-    hero1_counters.each do |hero, advantage|
+    hero1_counters.each do |hero, disadvantage|
       if hero2_counters_str.include? hero
-        duals << [hero, (advantage + hero2_counters.select { |h, a| h == hero }[0][1]).round(2)]
+        disadvantage_hero2 = hero2_counters.select { |h, a| h == hero }[0][1]
+        duals << [hero, (disadvantage + disadvantage_hero2).round(2) ]
       end
     end
     duals.sort_by { |hero, advantage| advantage }
