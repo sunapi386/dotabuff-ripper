@@ -19,6 +19,11 @@ def sanitize(input)
   input.gsub(/[^a-z]+/i, '').downcase
 end
 
+def print_n_counters(n, hero_advantage_list)
+  hero_advantage_list[0..n].each do |hero, advantage|
+    puts "#{hero} #{advantage}"
+  end
+end
 
 prompt_menu
 while true
@@ -33,7 +38,7 @@ while true
         puts database_bot.search_amatch hero
         puts  '...?'
       else
-        counters[0..10].each { |hero, advantage| puts "#{hero} #{advantage}" }
+        print_n_counters 10, counters
       end
 
     when 'd'
@@ -49,7 +54,7 @@ while true
         puts database_bot.search_amatch hero2
         puts  '...?'
       else
-        counters[0..10].each { |hero, advantage| puts "#{hero} #{advantage}" }
+        print_n_counters 10, counters
       end
 
     when 'a'
