@@ -12,12 +12,8 @@ module Questioner
     @neo.execute_query(query)['data']
   end
 
-  def dual_counters(hero1, hero2)
-    # Probably a better way is to make a good query and let the graph db figure this out
-    # Finds common heros that counters hero1 and hero2, and sums disadvantage
+  def merge_counters(hero1_counters, hero2_counters)
     duals = []
-    hero1_counters = what_counters(hero1)
-    hero2_counters = what_counters(hero2)
     hero2_counters_str = hero2_counters.to_s
     hero1_counters.each do |hero, disadvantage|
       if hero2_counters_str.include? hero

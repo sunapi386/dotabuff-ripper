@@ -39,7 +39,9 @@ while true
     when 'd'
       hero1 = sanitize ask 'Hero 1: '
       hero2 = sanitize ask 'Hero 2: '
-      counters = database_bot.dual_counters hero1, hero2
+      hero1_counters = database_bot.what_counters(hero1)
+      hero2_counters = database_bot.what_counters(hero2)
+      counters = database_bot.merge_counters(hero1_counters, hero2_counters)
       if counters.empty?
         puts 'Did you mean...'
         puts database_bot.search_amatch hero1
