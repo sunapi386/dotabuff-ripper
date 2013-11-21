@@ -16,7 +16,7 @@ def prompt_menu
 end
 
 def sanitize(input)
-  input.gsub(/[^a-z]+/i, '').downcase.gsub(/( |'|-)/,'')
+  input.gsub(/[^a-z]+/i, '').downcase
 end
 
 
@@ -27,10 +27,10 @@ while true
   case choice[0]
     when 's'
       hero = sanitize ask 'Hero: '
-      counters = database_bot.what_counters(hero)
+      counters = database_bot.what_counters hero
       if counters.empty?
         puts 'Did you mean...'
-        puts database_bot.search_regex(hero)
+        puts database_bot.search_amatch hero
         puts  '...?'
       else
         counters[0..10].each { |hero, advantage| puts "#{hero} #{advantage}" }
@@ -39,12 +39,12 @@ while true
     when 'd'
       hero1 = sanitize ask 'Hero 1: '
       hero2 = sanitize ask 'Hero 2: '
-      counters = database_bot.dual_counters(hero1, hero2)
+      counters = database_bot.dual_counters hero1, hero2
       if counters.empty?
         puts 'Did you mean...'
-        puts database_bot.search_regex(hero1)
-        puts  '...or...'
-        puts database_bot.search_regex(hero2)
+        puts database_bot.search_amatch hero1
+        puts  "... for #{hero1}, and for #{hero2}..."
+        puts database_bot.search_amatch hero2
         puts  '...?'
       else
         counters[0..10].each { |hero, advantage| puts "#{hero} #{advantage}" }
@@ -56,7 +56,8 @@ while true
 
     when 'f'
       find_this = sanitize ask 'Name: '
-      puts database_bot.search(find_this)
+      puts 'Similar hero names...'
+      puts database_bot.search_amatch find_this
 
     when 'q'
       puts 'Goodbye!'
