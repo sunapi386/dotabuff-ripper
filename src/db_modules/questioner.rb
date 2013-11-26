@@ -29,32 +29,12 @@ module Questioner
     @neo.execute_query(query)['data'][0][0]
   end
 
-  def search(hero)
-    all_heroes.collect { |name| name if name.include? hero }.compact!
-  end
-
-  def search_regex(hero)
-    return 'No match' if hero.empty?
-    query = Regexp.new(Regexp.escape(hero))
-    names = all_heroes.collect { |name| name if name =~ query}.compact!
-    if names.empty?
-      search_regex(hero[0..-2])
-    else
-      names
-    end
-  end
-
   def search_amatch(hero)
     return 'No match' if hero.empty?
     m = LongestSubsequence.new hero
     relative_matches = all_heroes.zip(m.match all_heroes).sort_by { |hero, match| match }.reverse
     # Return heros of at least mostly matching, by distance
     relative_matches.collect { |hero, match| hero }.compact[0..5]
-  end
-
-  def search_db_regex(hero)    # Not as good as amatch
-    query = "MATCH (n) WHERE n.name =~ '.*(?i)#{hero}.*' RETURN n.name"
-    @neo.execute_query(query)['data'][0][0]
   end
 
 end
