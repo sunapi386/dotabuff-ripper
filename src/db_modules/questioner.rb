@@ -7,7 +7,7 @@ module Questioner
     @neo.execute_query("MATCH (n:#{from})-[r]->(m:#{to}) RETURN r.advantage")['data'][0][0]
   end
 
-  def what_counters(hero)
+  def nemesis_of(hero)
     query = "MATCH (n:#{hero})-[r]->(m) WHERE r.advantage < 0 RETURN m.name, r.advantage ORDER BY r.advantage"
     @neo.execute_query(query)['data']
   end
