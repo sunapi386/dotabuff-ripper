@@ -24,6 +24,15 @@ module Questioner
     duals.sort_by { |hero, advantage| advantage }
   end
 
+  def role_of(hero)
+    query = "MATCH (n:#{hero}) RETURN n.role"
+    @neo.execute_query(query)['data'][0][0]
+  end
+
+  def all_roles
+    ['Lane Support', 'Pusher', 'Carry', 'Disabler', 'Durable', 'Support', 'Escape', 'Initator', 'Jungler', 'Nuker']
+  end
+
   def all_heroes
     query = 'MATCH (n) RETURN collect(n.name)'
     @neo.execute_query(query)['data'][0][0]
