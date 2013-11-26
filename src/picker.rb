@@ -18,6 +18,8 @@ database_bot = DatabaseBot.new
 
 # Lots of copy pasting code here, to-do: rework pasta
 
+puts "Welcome to dota counter picker!"
+puts "Each time you enter a hero we summarize those heroes' worst enemies"
 hero1 = sanitized_prompt ask 'Hero 1 >>> '
 hero1_counters = database_bot.nemesis_of hero1
 while hero1_counters.empty?
