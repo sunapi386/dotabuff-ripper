@@ -27,6 +27,7 @@ while true
 
   case choice[0]
     when 's'
+      puts '-----Single hero------'
       hero = sanitize ask 'Hero: '
       counters = database_bot.nemesis_of hero
       if counters.empty?
@@ -38,6 +39,7 @@ while true
       end
 
     when 't'
+      puts '-----Team picker------'
       picker
 
     when 'a'
@@ -45,6 +47,7 @@ while true
       puts database_bot.all_heroes
 
     when 'f'
+      puts '-----Find hero--------'
       find_this = sanitize ask 'Name: '
       puts 'Similar hero names...'
       puts database_bot.search_amatch find_this
