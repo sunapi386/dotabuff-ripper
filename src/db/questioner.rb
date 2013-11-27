@@ -27,13 +27,15 @@ module Questioner
   end
 
   def prompt_user_for_hero
-    hero = sanitized_prompt ask 'Hero >>> '
+    hero = sanitized_prompt ask '>>> '
     counters = nemesis_of hero
     while hero.empty? || counters.empty?
-      puts "Unrecognized hero '#{hero}', similar names are..."
-      puts search_amatch hero
-      puts  '...'
-      hero = sanitized_prompt ask 'Please re-enter Hero >>> '
+      similar = search_amatch hero
+      puts "#{hero} is unknown. Similar names are..."
+      puts similar
+      puts "Enter if you want #{similar.first}"
+      hero = sanitized_prompt ask '>>> '
+      hero = similar.first if hero.empty?
       counters = nemesis_of hero
     end
     [hero, counters]
