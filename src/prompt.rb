@@ -1,4 +1,5 @@
 require_relative 'db/database'
+require_relative 'analysis/picker'
 require 'highline/import'
 
 database_bot = DatabaseBot.new
@@ -8,7 +9,7 @@ def prompt_menu
   puts 'Welcome to Dota counter-picker!'
   puts '-------------------------------'
   puts 's - Single hero counters'
-  puts 'd - Dual hero counters'
+  puts 't - Team hero counters'
   puts 'a - All hero names'
   puts 'f - Find a hero by partial name'
   puts 'q - Quit'
@@ -19,11 +20,6 @@ def sanitize(input)
   input.gsub(/[^a-z]+/i, '').downcase
 end
 
-def print_n_counters(n, hero_advantage_list)
-  hero_advantage_list[0..n].each do |hero, advantage|
-    puts "#{hero} #{advantage}"
-  end
-end
 
 prompt_menu
 while true
@@ -41,21 +37,8 @@ while true
         print_n_counters 10, counters
       end
 
-    when 'd'
-      hero1 = sanitize ask 'Hero 1: '
-      hero2 = sanitize ask 'Hero 2: '
-      hero1_counters = database_bot.nemesis_of(hero1)
-      hero2_counters = database_bot.nemesis_of(hero2)
-      counters = database_bot.merge_counters(hero1_counters, hero2_counters)
-      if counters.empty?
-        puts 'Did you mean...'
-        puts database_bot.search_amatch hero1
-        puts  "... for #{hero1}, and for #{hero2}..."
-        puts database_bot.search_amatch hero2
-        puts  '...?'
-      else
-        print_n_counters 10, counters
-      end
+    when 't'
+      picker
 
     when 'a'
       puts '----All heros---------'
