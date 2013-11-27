@@ -5,8 +5,8 @@
 require 'logger'
 require 'neography'
 require_relative 'scraper'
-require_relative 'db_modules/creator'
-require_relative 'db_modules/questioner'
+require_relative 'db/creator'
+require_relative 'db/questioner'
 
 class DatabaseBot
   include Creator
