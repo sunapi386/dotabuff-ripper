@@ -43,7 +43,7 @@ while hero2_counters.empty?
   hero2_counters = database_bot.nemesis_of hero2
 end
 two_counters = database_bot.merge_counters hero1_counters, hero2_counters
-puts "Counters to #{hero1}, and #{hero2}:"
+puts "Counters to #{hero1}, and #{hero2}"
 print_n_counters 10, two_counters
 
 
@@ -87,8 +87,7 @@ end
 five_counters = database_bot.merge_counters four_counters, hero5_counters
 puts "Counters to #{hero1}, #{hero2}, #{hero3}, #{hero4}, and #{hero5}:"
 print_n_counters 10, five_counters
-roles = database_bot.role_of(hero1) + database_bot.role_of(hero2) + database_bot.role_of(hero3) + database_bot.role_of(hero4) + database_bot.role_of(hero5)
-puts roles
+database_bot.summarize database_bot.role_of(hero1), database_bot.role_of(hero2), database_bot.role_of(hero3), database_bot.role_of(hero4), database_bot.role_of(hero5)
 puts 'Done'
 
 

@@ -26,7 +26,7 @@ module Questioner
 
   def role_of(hero)
     query = "MATCH (n:#{hero}) RETURN n.role"
-    @neo.execute_query(query)['data'][0][0]
+    @neo.execute_query(query)['data'][0][0].split(', ')
   end
 
   def all_roles
@@ -36,6 +36,19 @@ module Questioner
   def all_heroes
     query = 'MATCH (n) RETURN collect(n.name)'
     @neo.execute_query(query)['data'][0][0]
+  end
+
+  def summarize(*heroes_roles)
+    frequencies = Hash.new(0)
+    heroes_roles.each do |hero_roles|
+      hero_roles.each do |role|
+        frequencies[role] += 1
+      end
+    end
+    frequencies.sort_by { |role, freq| freq }.reverse!
+    frequencies.each { |role, freq| puts "#{freq} #{role}" }
+    missing_roles = all_roles - frequencies.collect { |role, freq| role }
+    puts "This team does not have: #{missing_roles.to_s}"
   end
 
   def search_amatch(hero)
