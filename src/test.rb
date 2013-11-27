@@ -1,4 +1,4 @@
-require_relative 'database'
+require_relative 'db/database'
 
 
 database_bot = DatabaseBot.new
