@@ -9,9 +9,6 @@ def picker
 
 # Lots of copy pasting code here, to-do: rework pasta
 
-  puts 'Welcome to dota counter picker!'
-  puts "Each time you enter a hero we summarize those heroes' worst enemies"
-
   hero1, counter1 = database_bot.prompt_user_for_hero
   puts "Counters to #{hero1}:"
   print_n_counters 10, counter1
