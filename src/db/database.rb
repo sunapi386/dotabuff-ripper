@@ -24,6 +24,13 @@ class DatabaseBot
     @log = Logger.new(STDERR)
     @log.level = Logger::INFO
     @scrapebot = ScrapeBot.new
+    begin
+      @neo.get_node(0)
+    rescue Errno::ECONNREFUSED => e
+      @log.fatal e.message
+      @log.fatal 'Have you started the neography server?'
+      exit!
+    end
   end
 
 end
