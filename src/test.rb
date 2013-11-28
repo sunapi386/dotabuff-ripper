@@ -9,4 +9,4 @@ database_bot = DatabaseBot.new
 #database_bot.dual_counters('lina', 'lion').each {|hero, advantage| puts "#{hero} #{advantage}"}
 #database_bot.all_heroes
 #puts database_bot.role_of 'lina'
-puts database_bot.all_roles
+#puts database_bot.all_roles
