@@ -23,49 +23,47 @@ def promptAndGet(prompt)
   input = sanitize ask "#{prompt} >>> "
 end
 
-def menu
-  show_choices
-  while true
-    choice = promptAndGet 'Choice'
+database_bot = DatabaseBot.new
 
-    case choice[0]
-      when 's'
-        puts '-----Single hero------'
-        hero = promptAndGet 'Hero'
-        counters = database_bot.nemesis_of hero
-        if counters.empty?
-          puts 'Did you mean...'
-          puts database_bot.search_amatch hero
-          puts  '...?'
-        else
-          print_n_counters 10, counters
-        end
+show_choices
+while true
+  choice = promptAndGet 'Choice'
 
-      when 't'
-        puts '-----Team picker------'
-        picker
-
-      when 'a'
-        puts '----All heros---------'
-        puts database_bot.all_heroes
-
-      when 'f'
-        puts '-----Find hero--------'
-        find_this = promptAndGet 'Name'
-        puts 'Similar hero names...'
-        puts database_bot.search_amatch find_this
-
-      when 'q'
-        puts 'Goodbye!'
-        exit!
-
+  case choice[0]
+    when 's'
+      puts '-----Single hero------'
+      hero = promptAndGet 'Hero'
+      counters = database_bot.nemesis_of hero
+      if counters.empty?
+        puts 'Did you mean...'
+        puts database_bot.search_amatch hero
+        puts  '...?'
       else
-        puts 'Unknown choice!'
-        show_choices
-    end
+        print_n_counters 10, counters
+      end
 
+    when 't'
+      puts '-----Team picker------'
+      picker
+
+    when 'a'
+      puts '----All heros---------'
+      puts database_bot.all_heroes
+
+    when 'f'
+      puts '-----Find hero--------'
+      find_this = promptAndGet 'Name'
+      puts 'Similar hero names...'
+      puts database_bot.search_amatch find_this
+
+    when 'q'
+      puts 'Goodbye!'
+      exit!
+
+    else
+      puts 'Unknown choice!'
+      show_choices
   end
+
 end
 
-database_bot = DatabaseBot.new
-menu
